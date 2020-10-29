@@ -1,0 +1,27 @@
+[
+  {
+    "id": 0,
+    "name": "Tranquil Boots",
+    "price": 925
+  },
+  {
+    "id": 1,
+    "name": "Power Treads",
+    "price": 1400
+  },
+  {
+    "id": 2,
+    "name": "Phase Boots",
+    "price": 1500
+  },
+  {
+    "id": 3,
+    "name": "Boots of Travel 2",
+    "price": 4500
+  },
+  {
+    "id": 4,
+    "name": "Guardian Greaves",
+    "price": 4975
+  }
+]
