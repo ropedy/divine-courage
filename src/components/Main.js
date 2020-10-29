@@ -7,7 +7,7 @@ import RulesPage from '../pages/RulesPage';
 import AboutPage from '../pages/AboutPage';
 
 const Main = () => {
-  return <main className='h-4 bg-dc-blue flex-1 flex justify-center py-4'>
+  return <main className='h-4 bg-dc-bg flex-1 flex justify-center py-4 overflow-y-scroll'>
     <Switch>
       <Route exact path='/'>
         <HomePage />

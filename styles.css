@@ -5,9 +5,9 @@
 @tailwind utilities;
 
 .nav-link {
-  @apply transition ease-in-out duration-100;
+  @apply transition ease-out duration-100;
 }
 
 .nav-link:hover {
-  @apply text-dc-yellow;
+  @apply text-dc-fg;
 }

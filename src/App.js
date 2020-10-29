@@ -5,7 +5,7 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 
 const App = () => {
-  return <div className='text-dc-yellow flex flex-col h-screen'>
+  return <div className='text-dc-fg flex flex-col h-screen'>
     <Header />
     <Main />
     <Footer />
