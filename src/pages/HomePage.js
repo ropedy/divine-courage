@@ -27,11 +27,11 @@ const HomePage = () => {
     <h1 className='text-3xl text-dc-accent font-bold mx-auto'>Divine Courage</h1>
     <button className='mx-auto my-4 py-1 px-3 border-2 border-dc-accent active:border-dc-fg focus:outline-none bg-dc-bg-dark hover:bg-dc-accent rounded-md transition-bg ease-out duration-150' onClick={random}>Random</button>
     { build ? <div>
-      <ItemCard item={ { ...build.hero, icon: 'abaddon' } } isHero={true} />
+      <ItemCard item={ { ...build.hero } } isHero={true} />
       <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2'>
-        <ItemCard item={ { ...build.boots, icon: 'tranquil_boots' } } isHero={false} />
+        <ItemCard item={ { ...build.boots } } isHero={false} />
         {build.items.map(it =>
-          <ItemCard key={it.id} item={ { ...it, icon: 'mask_of_madness' } } isHero={false} />
+          <ItemCard key={it.id} item={ { ...it } } isHero={false} />
         )}
       </div>
       <div className='flex justify-center my-4'>Total price: {build.price}</div>

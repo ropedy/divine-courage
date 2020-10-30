@@ -2,281 +2,337 @@
   {
     "id": 1,
     "name": "Blink Dagger",
-    "price": 2250
+    "price": 2250,
+    "icon": "blink_dagger_icon.png"
   },
   {
     "id": 2,
     "name": "Hand of Midas",
-    "price": 2200
+    "price": 2200,
+    "icon": "hand_of_midas_icon.png"
   },
   {
     "id": 3,
     "name": "Helm of the Dominator",
-    "price": 2350
+    "price": 2350,
+    "icon": "helm_of_the_dominator_icon.png"
   },
   {
     "id": 4,
     "name": "Mask of Madness",
-    "price": 1775
+    "price": 1775,
+    "icon": "mask_of_madness_icon.png"
   },
   {
     "id": 5,
     "name": "Moon Shard",
-    "price": 4000
+    "price": 4000,
+    "icon": "moon_shard_icon.png"
   },
   {
     "id": 6,
     "name": "Drum of Endurance",
-    "price": 1950
+    "price": 1950,
+    "icon": "drum_of_endurance_icon.png"
   },
   {
     "id": 7,
     "name": "Holy Locket",
-    "price": 2500
+    "price": 2500,
+    "icon": "holy_locket_icon.png"
   },
   {
     "id": 8,
     "name": "Pipe of Insight",
-    "price": 3425
+    "price": 3425,
+    "icon": "pipe_of_insight_icon.png"
   },
   {
     "id": 9,
     "name": "Spirit Vessel",
-    "price": 2940
+    "price": 2940,
+    "icon": "spirit_vessel_icon.png"
   },
   {
     "id": 10,
     "name": "Vladmir's Offering",
-    "price": 2375
+    "price": 2375,
+    "icon": "vladmir's_offering_icon.png"
   },
   {
     "id": 11,
     "name": "Aether Lens",
-    "price": 2275
+    "price": 2275,
+    "icon": "aether_lens_icon.png"
   },
   {
     "id": 12,
     "name": "Aghanim's Scepter",
-    "price": 4200
+    "price": 4200,
+    "icon": "aghanim's_scepter_icon.png"
   },
   {
     "id": 13,
     "name": "Dagon 5",
-    "price": 7850
+    "price": 7850,
+    "icon": "dagon_5_icon.png"
   },
   {
     "id": 14,
     "name": "Eul's Scepter of Divinity",
-    "price": 2725
+    "price": 2725,
+    "icon": "eul's_scepter_of_divinity_icon.png"
   },
   {
     "id": 15,
     "name": "Glimmer Cape",
-    "price": 1900
+    "price": 1900,
+    "icon": "glimmer_cape_icon.png"
   },
   {
     "id": 16,
     "name": "Necronomicon 3",
-    "price": 4650
+    "price": 4650,
+    "icon": "necronomicon_3_icon.png"
   },
   {
     "id": 17,
     "name": "Nullifier",
-    "price": 4725
+    "price": 4725,
+    "icon": "nullifier_icon.png"
   },
   {
     "id": 18,
     "name": "Octarine Core",
-    "price": 5000
+    "price": 5000,
+    "icon": "octarine_core_icon.png"
   },
   {
     "id": 19,
     "name": "Refresher Orb",
-    "price": 5000
+    "price": 5000,
+    "icon": "refresher_orb_icon.png"
   },
   {
     "id": 20,
     "name": "Rod of Atos",
-    "price": 2750
+    "price": 2750,
+    "icon": "rod_of_atos_icon.png"
   },
   {
     "id": 21,
     "name": "Scythe of Vyse",
-    "price": 5675
+    "price": 5675,
+    "icon": "scythe_of_vyse_icon.png"
   },
   {
     "id": 22,
     "name": "Solar Crest",
-    "price": 3975
+    "price": 3975,
+    "icon": "solar_crest_icon.png"
   },
   {
     "id": 23,
     "name": "Veil of Discord",
-    "price": 1525
+    "price": 1525,
+    "icon": "veil_of_discord_icon.png"
   },
   {
     "id": 24,
     "name": "Aeon Disk",
-    "price": 3100
+    "price": 3100,
+    "icon": "aeon_disk_icon.png"
   },
   {
     "id": 25,
     "name": "Assault Cuirass",
-    "price": 5075
+    "price": 5075,
+    "icon": "assault_cuirass_icon.png"
   },
   {
     "id": 26,
     "name": "Black King Bar",
-    "price": 4050
+    "price": 4050,
+    "icon": "black_king_bar_icon.png"
   },
   {
     "id": 27,
     "name": "Blade Mail",
-    "price": 2050
+    "price": 2050,
+    "icon": "blade_mail_icon.png"
   },
   {
     "id": 28,
     "name": "Bloodstone",
-    "price": 5250
+    "price": 5250,
+    "icon": "bloodstone_icon.png"
   },
   {
     "id": 29,
     "name": "Crimson Guard",
-    "price": 3800
+    "price": 3800,
+    "icon": "crimson_guard_icon.png"
   },
   {
     "id": 30,
     "name": "Heart of Tarrasque",
-    "price": 5400
+    "price": 5400,
+    "icon": "heart_of_tarrasque_icon.png"
   },
   {
     "id": 31,
     "name": "Hurricane Pike",
-    "price": 4575
+    "price": 4575,
+    "icon": "hurricane_pike_icon.png"
   },
   {
     "id": 32,
     "name": "Linken's Sphere",
-    "price": 4600
+    "price": 4600,
+    "icon": "linken's_sphere_icon.png"
   },
   {
     "id": 33,
     "name": "Lotus Orb",
-    "price": 3950
+    "price": 3950,
+    "icon": "lotus_orb_icon.png"
   },
   {
     "id": 34,
     "name": "Manta Style",
-    "price": 4700
+    "price": 4700,
+    "icon": "manta_style_icon.png"
   },
   {
     "id": 35,
     "name": "Shiva's Guard",
-    "price": 4850
+    "price": 4850,
+    "icon": "shiva's_guard_icon.png"
   },
   {
     "id": 36,
     "name": "Abyssal Blade",
-    "price": 6625
+    "price": 6625,
+    "icon": "abyssal_blade_icon.png"
   },
   {
     "id": 37,
     "name": "Armlet of Mordiggian",
-    "price": 2475
+    "price": 2475,
+    "icon": "armlet_of_mordiggian_icon.png"
   },
   {
     "id": 38,
     "name": "Battle Fury",
-    "price": 4180
+    "price": 4180,
+    "icon": "battle_fury_icon.png"
   },
   {
     "id": 39,
     "name": "Bloodthorn",
-    "price": 6475
+    "price": 6475,
+    "icon": "bloodthorn_icon.png"
   },
   {
     "id": 40,
     "name": "Butterfly",
-    "price": 5275
+    "price": 5275,
+    "icon": "butterfly_icon.png"
   },
   {
     "id": 41,
     "name": "Daedalus",
-    "price": 5150
+    "price": 5150,
+    "icon": "daedalus_icon.png"
   },
   {
     "id": 42,
     "name": "Ethereal Blade",
-    "price": 4500
+    "price": 4500,
+    "icon": "ethereal_blade_icon.png"
   },
   {
     "id": 43,
     "name": "Meteor Hammer",
-    "price": 2300
+    "price": 2300,
+    "icon": "meteor_hammer_icon.png"
   },
   {
     "id": 44,
     "name": "Monkey King Bar",
-    "price": 4850
+    "price": 4850,
+    "icon": "monkey_king_bar_icon.png"
   },
   {
     "id": 45,
     "name": "Radiance",
-    "price": 5150
+    "price": 5150,
+    "icon": "radiance_icon.png"
   },
   {
     "id": 46,
     "name": "Silver Edge",
-    "price": 6100
+    "price": 6100,
+    "icon": "silver_edge_icon.png"
   },
   {
     "id": 47,
     "name": "Desolator",
-    "price": 3500
+    "price": 3500,
+    "icon": "desolator_icon.png"
   },
   {
     "id": 48,
     "name": "Diffusal Blade",
-    "price": 3150
+    "price": 3150,
+    "icon": "diffusal_blade_icon.png"
   },
   {
     "id": 49,
     "name": "Eye of Skadi",
-    "price": 5300
+    "price": 5300,
+    "icon": "eye_of_skadi_icon.png"
   },
   {
     "id": 50,
     "name": "Heaven's Halberd",
-    "price": 3850
+    "price": 3850,
+    "icon": "heaven's_halberd_icon.png"
   },
   {
     "id": 51,
     "name": "Kaya and Sange",
-    "price": 4100
+    "price": 4100,
+    "icon": "kaya_and_sange_icon.png"
   },
   {
     "id": 52,
     "name": "Mjollnir",
-    "price": 5600
+    "price": 5600,
+    "icon": "mjollnir_icon.png"
   },
   {
     "id": 53,
     "name": "Sange and Yasha",
-    "price": 4100
+    "price": 4100,
+    "icon": "sange_and_yasha_icon.png"
   },
   {
     "id": 54,
     "name": "Satanic",
-    "price": 5800
+    "price": 5800,
+    "icon": "satanic_icon.png"
   },
   {
     "id": 55,
     "name": "Yasha and Kaya",
-    "price": 4100
+    "price": 4100,
+    "icon": "yasha_and_kaya_icon.png"
   },
   {
     "id": 56,
-    "name": "Rapier",
-    "price": 6000
+    "name": "Divine Rapier",
+    "price": 6000,
+    "icon": "divine_rapier_icon.png"
   }
 ]

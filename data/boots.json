@@ -2,26 +2,31 @@
   {
     "id": 0,
     "name": "Tranquil Boots",
-    "price": 925
+    "price": 925,
+    "icon": "tranquil_boots_icon.png"
   },
   {
     "id": 1,
     "name": "Power Treads",
-    "price": 1400
+    "price": 1400,
+    "icon": "power_treads_icon.png"
   },
   {
     "id": 2,
     "name": "Phase Boots",
-    "price": 1500
+    "price": 1500,
+    "icon": "phase_boots_icon.png"
   },
   {
     "id": 3,
     "name": "Boots of Travel 2",
-    "price": 4500
+    "price": 4500,
+    "icon": "boots_of_travel_2_icon.png"
   },
   {
     "id": 4,
     "name": "Guardian Greaves",
-    "price": 4975
+    "price": 4975,
+    "icon": "guardian_greaves_icon.png"
   }
 ]
