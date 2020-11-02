@@ -17,12 +17,20 @@ module.exports = {
       },
       transitionProperty: {
         'bg': 'background-color'
+      },
+      spacing: {
+        '120': '30rem'
+      },
+      maxWidth: {
+        '120': '30rem'
       }
     },
   },
   variants: {
-    backgroundColor: ['responsive', 'hover', 'focus', 'active'],
-    borderColor: ['responsive', 'hover', 'focus', 'active'],
+    backgroundColor: ['responsive', 'hover', 'focus', 'active', 'disabled'],
+    borderColor: ['responsive', 'hover', 'focus', 'active', 'disabled'],
+    textColor: ['responsive', 'hover', 'focus', 'active', 'disabled'],
+    cursor: ['responsive', 'hover', 'focus', 'active', 'disabled'],
   },
   plugins: [],
 }
