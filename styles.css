@@ -11,3 +11,23 @@
 .nav-link:hover {
   @apply text-dc-fg;
 }
+
+.btn {
+  @apply py-1 px-3 border-2 border-dc-accent bg-dc-bg-dark rounded-md transition-bg ease-out duration-150;
+}
+
+.btn:active {
+  @apply border-dc-fg;
+}
+
+.btn:hover {
+  @apply bg-dc-accent;
+}
+
+.btn:disabled {
+  @apply border-dc-bg-dark bg-dc-bg cursor-not-allowed;
+}
+
+.btn:focus {
+  @apply outline-none;
+}

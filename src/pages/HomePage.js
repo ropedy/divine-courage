@@ -62,6 +62,15 @@ const HomePage = () => {
     setCooldown(cdSec);
   };
 
+  const copyToClipboard = () => {
+    const hero = `${build.hero.name} with `;
+    const boots = `${build.boots.name}, `;
+    const items = `${build.items.map(i => i.name).join(', ')}. `.replace(/,(?!.*,)/, ' and');
+    const cost = `Total cost: ${build.price}.`;
+
+    navigator.clipboard.writeText(hero + boots + items + cost);
+  };
+
   return <div className='flex flex-col'>
     <h1 className='text-3xl text-dc-accent font-bold mx-auto'>Divine Courage</h1>
     <p className='mx-auto p-2 max-w-120 text-justify'>
@@ -69,8 +78,9 @@ const HomePage = () => {
     </p>
     <button
       disabled={randomDisabled}
-      className='mx-auto my-4 py-1 px-3 border-2 border-dc-accent active:border-dc-fg focus:outline-none bg-dc-bg-dark hover:bg-dc-accent rounded-md disabled:border-dc-bg-dark disabled:bg-dc-bg disabled:cursor-not-allowed transition-bg ease-out duration-150'
+      className='btn mx-auto my-4'
       onClick={random}
+      title={randomDisabled ? 'Generator on cooldown' : 'Generate a build'}
     >
       { randomDisabled ? 'Cooldown ' + cooldown : 'Generate' }
     </button>
@@ -82,7 +92,10 @@ const HomePage = () => {
           <ItemCard key={it.id} item={ { ...it } } isHero={false} />
         )}
       </div>
-      <div className='flex justify-center my-4'>Total price: {build.price}</div>
+      <div className='flex justify-center items-center my-4'>
+        <span>Total cost: {build.price}</span>
+        <button className='m-0 ml-2 btn' onClick={copyToClipboard} title='Copy build to clipboard'>Copy</button>
+      </div>
     </div> : null}
   </div>;
 };
