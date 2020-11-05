@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import ItemCard from '../components/ItemCard';
+import Build from '../components/Build';
 
 import heroList from '../../data/heroes';
 import bootList from '../../data/boots';
@@ -8,8 +8,14 @@ import itemList from '../../data/items';
 
 const cdSec = 300;
 
+let id = 0;
+const getId = () => {
+  return ++id;
+};
+
 const HomePage = () => {
-  const [ build, setBuild ] = useState(null);
+  const [ build, setBuild ] = useState(localStorage.build ? JSON.parse(localStorage.build) : { id: getId(), location: -150 });
+  const [ oldBuild, setOldBuild ] = useState(localStorage.oldBuild ? JSON.parse(localStorage.oldBuild) : { id: getId(), location: 0 });
   const [ randomDisabled, setRandomDisabled] = useState(false);
   const [ cooldown, setCooldown ] = useState(null);
   const intervalRef = useRef(null);
@@ -20,10 +26,6 @@ const HomePage = () => {
     if (cooldownActive) {
       setRandomDisabled(true);
       setCooldown(Math.ceil((+localStorage.lastRandom - Date.now()) / 1000 + cdSec));
-    }
-
-    if (localStorage.build) {
-      setBuild(JSON.parse(localStorage.build));
     }
   }, []);
 
@@ -43,6 +45,27 @@ const HomePage = () => {
     }
   }, [cooldown]);
 
+  useEffect(() => {
+    if (build.location === -150) {
+      setBuild({ ...build, location: 0 });
+    }
+  }, [build]);
+
+  useEffect(() => {
+    if (oldBuild.location === 0) {
+      setOldBuild({ ...oldBuild, location: 150 });
+    }
+  }, [oldBuild]);
+
+  const buildToString = b => {
+    const hero = `${b.hero.name} with `;
+    const boots = `${b.boots.name}, `;
+    const items = `${b.items.map(i => i.name).join(', ')}. `.replace(/,(?!.*,)/, ' and');
+    const cost = `Total cost: ${b.price}.`;
+
+    return hero + boots + items + cost;
+  };
+
   const random = () => {
     let items;
 
@@ -54,21 +77,18 @@ const HomePage = () => {
     const boots = bootList.map(b => [Math.random(), b]).sort()[0][1];
     const price = boots.price + items.reduce((acc, i) => acc + i.price, 0);
 
-    setBuild({ hero, boots, items, price });
+    setBuild({ hero, boots, items, price, id: oldBuild ? getId() : build.id, location: -150 });
+
+    if (build) {
+      setOldBuild({ ...build, id: 'old-' + build.id, location: 0 });
+
+      localStorage.oldBuild = JSON.stringify({ ...build, id: getId(), location: 150 });
+    }
 
     localStorage.build = JSON.stringify({ hero, boots, items, price });
     localStorage.lastRandom = Date.now();
     setRandomDisabled(true);
     setCooldown(cdSec);
-  };
-
-  const copyToClipboard = () => {
-    const hero = `${build.hero.name} with `;
-    const boots = `${build.boots.name}, `;
-    const items = `${build.items.map(i => i.name).join(', ')}. `.replace(/,(?!.*,)/, ' and');
-    const cost = `Total cost: ${build.price}.`;
-
-    navigator.clipboard.writeText(hero + boots + items + cost);
   };
 
   return <div className='flex flex-col'>
@@ -84,19 +104,14 @@ const HomePage = () => {
     >
       { randomDisabled ? 'Cooldown ' + cooldown : 'Generate' }
     </button>
-    { build ? <div>
-      <ItemCard item={ { ...build.hero } } isHero={true} />
-      <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2'>
-        <ItemCard item={ { ...build.boots } } isHero={false} />
-        {build.items.map(it =>
-          <ItemCard key={it.id} item={ { ...it } } isHero={false} />
-        )}
+    <Build key={build.id} old={false} build={build} location={build.location} buildToString={buildToString} />
+    <Build key={oldBuild.id} old={true} build={oldBuild} location={oldBuild.location} buildToString={buildToString} />
+    { oldBuild.hero ? <>
+      <h2 style={{ marginTop: '-16rem' }} className='text-1xl text-dc-accent font-bold mx-auto'>Previous build</h2>
+      <div className='mx-auto p-2 max-w-120 text-justify'>
+        {buildToString(oldBuild)}
       </div>
-      <div className='flex justify-center items-center my-4'>
-        <span>Total cost: {build.price}</span>
-        <button className='m-0 ml-2 btn' onClick={copyToClipboard} title='Copy build to clipboard'>Copy</button>
-      </div>
-    </div> : null}
+    </> : null}
   </div>;
 };
 
