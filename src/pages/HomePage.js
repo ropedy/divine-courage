@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { setBuild, setOldBuild } from '../reducers/buildReducer';
 
 import Build from '../components/Build';
+
+import { getId } from '../utils/jsUtils';
 
 import heroList from '../../data/heroes';
 import bootList from '../../data/boots';
@@ -8,14 +13,9 @@ import itemList from '../../data/items';
 
 const cdSec = 300;
 
-let id = 0;
-const getId = () => {
-  return ++id;
-};
-
 const HomePage = () => {
-  const [ build, setBuild ] = useState(localStorage.build ? JSON.parse(localStorage.build) : { id: getId(), location: -150 });
-  const [ oldBuild, setOldBuild ] = useState(localStorage.oldBuild ? JSON.parse(localStorage.oldBuild) : { id: getId(), location: 0 });
+  const dispatch = useDispatch();
+  const { build, oldBuild } = useSelector(({ build }) => build);
   const [ randomDisabled, setRandomDisabled] = useState(false);
   const [ cooldown, setCooldown ] = useState(null);
   const intervalRef = useRef(null);
@@ -46,14 +46,14 @@ const HomePage = () => {
   }, [cooldown]);
 
   useEffect(() => {
-    if (build.location === -150) {
-      setBuild({ ...build, location: 0 });
+    if (build.location === -150 && build.hero) {
+      dispatch(setBuild({ ...build, location: 0 }));
     }
   }, [build]);
 
   useEffect(() => {
     if (oldBuild.location === 0) {
-      setOldBuild({ ...oldBuild, location: 150 });
+      dispatch(setOldBuild({ ...oldBuild, location: 150 }));
     }
   }, [oldBuild]);
 
@@ -67,6 +67,10 @@ const HomePage = () => {
   };
 
   const random = () => {
+    if (randomDisabled) {
+      return;
+    }
+
     let items;
 
     do {
@@ -77,15 +81,22 @@ const HomePage = () => {
     const boots = bootList.map(b => [Math.random(), b]).sort()[0][1];
     const price = boots.price + items.reduce((acc, i) => acc + i.price, 0);
 
-    setBuild({ hero, boots, items, price, id: oldBuild ? getId() : build.id, location: -150 });
+    const randBuild = build.hero ?
+      { hero, boots, items, price, id: getId(), location: -150 } :
+      { ...build, hero, boots, items, price };
+    const { id, location, ...strippedBuild } = randBuild; // eslint-disable-line
 
-    if (build) {
-      setOldBuild({ ...build, id: 'old-' + build.id, location: 0 });
+    dispatch(setBuild(randBuild));
+    localStorage.build = JSON.stringify(strippedBuild);
 
-      localStorage.oldBuild = JSON.stringify({ ...build, id: getId(), location: 150 });
+    if (build.hero) {
+      const oldRandBuild = { ...build, id: getId(), location: 0 };
+      const { id, location, ...strippedOldBuild } = oldRandBuild; // eslint-disable-line
+
+      dispatch(setOldBuild(oldRandBuild));
+      localStorage.oldBuild = JSON.stringify(strippedOldBuild);
     }
 
-    localStorage.build = JSON.stringify({ hero, boots, items, price });
     localStorage.lastRandom = Date.now();
     setRandomDisabled(true);
     setCooldown(cdSec);
@@ -106,7 +117,7 @@ const HomePage = () => {
     </button>
     <Build key={build.id} old={false} build={build} location={build.location} buildToString={buildToString} />
     <Build key={oldBuild.id} old={true} build={oldBuild} location={oldBuild.location} buildToString={buildToString} />
-    { oldBuild.hero ? <>
+    {oldBuild.hero ? <>
       <h2 style={{ marginTop: '-16rem' }} className='text-1xl text-dc-accent font-bold mx-auto'>Previous build</h2>
       <div className='mx-auto p-2 max-w-120 text-justify'>
         {buildToString(oldBuild)}
