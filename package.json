@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html --no-cache",
-    "build": "parcel build index.html --public-url \"./\""
+    "build": "parcel build index.html --no-cache --public-url \"./\""
   },
   "browserslist": [
     "since 2017-06"
