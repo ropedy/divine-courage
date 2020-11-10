@@ -31,3 +31,15 @@
 .btn:focus {
   @apply outline-none;
 }
+
+.h1 {
+  @apply text-3xl text-dc-accent font-bold mx-auto;
+}
+
+.h2 {
+  @apply text-xl text-dc-accent font-bold mx-auto;
+}
+
+.text {
+  @apply mx-auto p-2 max-w-120 text-justify;
+}

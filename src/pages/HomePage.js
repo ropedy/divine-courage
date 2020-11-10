@@ -102,9 +102,9 @@ const HomePage = () => {
     setCooldown(cdSec);
   };
 
-  return <div className='flex flex-col'>
-    <h1 className='text-3xl text-dc-accent font-bold mx-auto'>Divine Courage</h1>
-    <p className='mx-auto p-2 max-w-120 text-justify'>
+  return <div className='flex flex-col px-2'>
+    <h1 className='h1'>Divine Courage</h1>
+    <p className='text'>
       Divine Courage is random build generator for Dota 2. Press the button below to get started. Learn more from rules and about pages.
     </p>
     <button
@@ -118,7 +118,7 @@ const HomePage = () => {
     <Build key={build.id} old={false} build={build} location={build.location} buildToString={buildToString} />
     <Build key={oldBuild.id} old={true} build={oldBuild} location={oldBuild.location} buildToString={buildToString} />
     {oldBuild.hero ? <>
-      <h2 style={{ marginTop: '-16rem' }} className='text-1xl text-dc-accent font-bold mx-auto'>Previous build</h2>
+      <h2 style={{ marginTop: '-16rem' }} className='h2'>Previous build</h2>
       <div className='mx-auto p-2 max-w-120 text-justify'>
         {buildToString(oldBuild)}
       </div>

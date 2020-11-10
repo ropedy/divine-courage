@@ -7,6 +7,9 @@
     "start": "parcel index.html --no-cache",
     "build": "parcel build index.html --public-url \"./\""
   },
+  "browserslist": [
+    "since 2017-06"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",

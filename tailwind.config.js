@@ -16,13 +16,20 @@ module.exports = {
         'main' : ['Roboto', 'sans-serif']
       },
       transitionProperty: {
-        'bg': 'background-color'
+        'bg': 'background-color',
+        'm-h': 'max-height'
       },
       spacing: {
         '120': '30rem'
       },
       maxWidth: {
-        '120': '30rem'
+        '120': '30rem',
+        '160': '40rem',
+        '200': '50rem',
+        '240': '60rem'
+      },
+      height: {
+        'content': 'fit-content'
       }
     },
   },

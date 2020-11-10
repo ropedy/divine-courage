@@ -9,7 +9,7 @@ const Build = ({ build, old, location, buildToString }) => {
 
   const props = {
     style: {
-      transform: `translate(${location}vh, ${old ? '-100%' : '0'})`
+      transform: `translate(${location}vw, ${old ? '-100%' : '0'})`
     },
     className: 'transition-transform ease-out duration-1000'
   };
