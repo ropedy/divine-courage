@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Accordion from './Accordion';
+
+import { setList } from '../reducers/settingsReducer';
 
 import heroList from '../../data/heroes';
 import bootList from '../../data/boots';
@@ -9,22 +12,21 @@ import itemList from '../../data/items';
 import icons from '../../img/icons/*.png';
 
 const Blacklist = () => {
-  const [ bootsBlacklist, setBootsBlacklist ] = useState([]);
-  const [ itemBlacklist, setItemBlacklist ] = useState([]);
-  const [ heroBlacklist, setHeroBlacklist ] = useState([]);
+  const dispatch = useDispatch();
+  const { bootsBlacklist, itemBlacklist, heroBlacklist } = useSelector(({ settings }) => settings);
 
-  const toggleItem = (list, func, id) => {
+  const toggleItem = (list, name, id) => {
     if (list.includes(id)) {
-      func(list.filter(h => h !== id));
+      dispatch(setList(list.filter(h => h !== id), name));
     }
     else {
-      func([ ...list, id ]);
+      dispatch(setList([ ...list, id ], name));
     }
   };
 
   const resetItems = () => {
-    setBootsBlacklist([]);
-    setItemBlacklist([]);
+    dispatch(setList([], 'bootsBlacklist'));
+    dispatch(setList([], 'itemBlacklist'));
   };
 
   return <>
@@ -49,7 +51,7 @@ const Blacklist = () => {
           return <img
             key={'item-' + boots.id}
             style={{ filter: bootsBlacklist.includes(boots.id) ? 'grayscale(100%)' : 'grayscale(0%)' }}
-            onClick={() => toggleItem(bootsBlacklist, setBootsBlacklist, boots.id)}
+            onClick={() => toggleItem(bootsBlacklist, 'bootsBlacklist', boots.id)}
             className='cursor-pointer'
             src={icons[boots.icon.replace(/_icon\.png$/, '')]}
           />;
@@ -58,7 +60,7 @@ const Blacklist = () => {
           return <img
             key={'boot-' + item.id}
             style={{ filter: itemBlacklist.includes(item.id) ? 'grayscale(100%)' : 'grayscale(0%)' }}
-            onClick={() => toggleItem(itemBlacklist, setItemBlacklist, item.id)}
+            onClick={() => toggleItem(itemBlacklist, 'itemBlacklist', item.id)}
             className='cursor-pointer'
             src={icons[item.icon.replace(/_icon\.png$/, '')]}
           />;
@@ -67,7 +69,7 @@ const Blacklist = () => {
     </Accordion>
     <Accordion title='Hero blacklist' contentClass='flex flex-col'>
       <div className='mx-auto mb-2'>
-        <button className='btn' onClick={() => setHeroBlacklist([])}>Reset</button>
+        <button className='btn' onClick={() => dispatch(setList([], 'heroBlacklist'))}>Reset</button>
         <div
           className={'inline-block ml-3' + (heroBlacklist.length === heroList.length ? ' text-red-500' : '')}
           title='All heroes cannot be blacklisted.'
@@ -80,7 +82,7 @@ const Blacklist = () => {
           return <img
             key={'hero-' + hero.id}
             style={{ filter: heroBlacklist.includes(hero.id) ? 'grayscale(100%)' : 'grayscale(0%)' }}
-            onClick={() => toggleItem(heroBlacklist, setHeroBlacklist, hero.id)}
+            onClick={() => toggleItem(heroBlacklist, 'heroBlacklist', hero.id)}
             className='cursor-pointer'
             src={icons[hero.icon.replace(/_icon\.png$/, '')]}
           />;
