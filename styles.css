@@ -2,7 +2,6 @@
 
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 .nav-link {
   @apply transition ease-out duration-100;
@@ -17,7 +16,7 @@
 }
 
 .btn:active {
-  @apply border-dc-fg;
+  @apply border-dc-fg z-10;
 }
 
 .btn:hover {
@@ -25,7 +24,7 @@
 }
 
 .btn:disabled {
-  @apply border-dc-bg-dark bg-dc-bg cursor-not-allowed;
+  @apply text-dc-bg-dark font-bold border-dc-bg-dark bg-dc-bg cursor-not-allowed;
 }
 
 .btn:focus {
@@ -43,3 +42,5 @@
 .text {
   @apply mx-auto p-2 max-w-120 text-justify;
 }
+
+@tailwind utilities;

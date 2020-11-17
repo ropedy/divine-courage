@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setBuild, setOldBuild } from '../reducers/buildReducer';
 
 import Build from '../components/Build';
+import BuildSettings from '../components/BuildSettings';
+import Accordion from '../components/Accordion';
 
 import { getId } from '../utils/jsUtils';
 
@@ -15,9 +17,14 @@ const cdSec = 300;
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const { build, oldBuild } = useSelector(({ build }) => build);
+  const { build, oldBuild,
+    bootBlacklist, itemBlacklist, heroBlacklist,
+    bootWhitelist, itemWhitelist, heroWhitelist,
+    itemSetting, heroSetting }
+    = useSelector(store => ({ ...store.build, ...store.settings }));
   const [ randomDisabled, setRandomDisabled] = useState(false);
   const [ cooldown, setCooldown ] = useState(null);
+  const [ settingsExpanded, setSettingsExpanded ] = useState(false);
   const intervalRef = useRef(null);
 
   useEffect(() => {
@@ -71,14 +78,35 @@ const HomePage = () => {
       return;
     }
 
+    let filteredItemList = itemList.slice();
+    let filteredBootList = bootList.slice();
+    let filteredHeroList = heroList.slice();
+
+    if (itemSetting === 1) {
+      filteredItemList = filteredItemList.filter(i => !itemBlacklist.includes(i.id));
+      filteredBootList = filteredBootList.filter(b => !bootBlacklist.includes(b.id));
+    }
+    else if (itemSetting === 2) {
+      filteredItemList = filteredItemList.filter(i => itemWhitelist.includes(i.id));
+      filteredBootList = filteredBootList.filter(b => bootWhitelist.includes(b.id));
+    }
+
+    if (heroSetting === 1) {
+      filteredHeroList = filteredHeroList.filter(h => !heroBlacklist.includes(h.id));
+    }
+    else if (heroSetting === 2) {
+      filteredHeroList = filteredHeroList.filter(h => heroWhitelist.includes(h.id));
+    }
+
+
     let items;
 
     do {
-      items = itemList.map(i => [Math.random(), i]).sort().map(i => i[1]).slice(0, 5);
+      items = filteredItemList.map(i => [Math.random(), i]).sort().map(i => i[1]).slice(0, 5);
     } while (items.some(i => i.id === 56) && Math.random() < .8);
 
-    const hero = heroList.map(h => [Math.random(), h]).sort()[0][1];
-    const boots = bootList.map(b => [Math.random(), b]).sort()[0][1];
+    const hero = filteredHeroList.map(h => [Math.random(), h]).sort()[0][1];
+    const boots = filteredBootList.map(b => [Math.random(), b]).sort()[0][1];
     const price = boots.price + items.reduce((acc, i) => acc + i.price, 0);
 
     const randBuild = build.hero ?
@@ -102,19 +130,27 @@ const HomePage = () => {
     setCooldown(cdSec);
   };
 
-  return <div className='flex flex-col px-2'>
+  return <div className='flex flex-col px-2 h-content'>
     <h1 className='h1'>Divine Courage</h1>
     <p className='text'>
       Divine Courage is random build generator for Dota 2. Press the button below to get started. Learn more from rules and about pages.
     </p>
-    <button
-      disabled={randomDisabled}
-      className='btn mx-auto my-4'
-      onClick={random}
-      title={randomDisabled ? 'Generator on cooldown' : 'Generate a build'}
-    >
-      { randomDisabled ? 'Cooldown ' + cooldown : 'Generate' }
-    </button>
+    <div className='mx-auto my-4'>
+      <button
+        disabled={randomDisabled}
+        className='btn'
+        onClick={random}
+        title={randomDisabled ? 'Generator on cooldown' : 'Generate a build'}
+      >
+        { randomDisabled ? 'Cooldown ' + cooldown : 'Generate' }
+      </button>
+      <button className='btn ml-2' onClick={() => setSettingsExpanded(!settingsExpanded)}>
+        Settings
+      </button>
+    </div>
+    <Accordion expanded={settingsExpanded} contentClass='flex flex-col'>
+      <BuildSettings />
+    </Accordion>
     <Build key={build.id} old={false} build={build} location={build.location} buildToString={buildToString} />
     <Build key={oldBuild.id} old={true} build={oldBuild} location={oldBuild.location} buildToString={buildToString} />
     {oldBuild.hero ? <>

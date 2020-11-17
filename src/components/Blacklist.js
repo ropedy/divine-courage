@@ -13,7 +13,7 @@ import icons from '../../img/icons/*.png';
 
 const Blacklist = () => {
   const dispatch = useDispatch();
-  const { bootsBlacklist, itemBlacklist, heroBlacklist } = useSelector(({ settings }) => settings);
+  const { bootBlacklist, itemBlacklist, heroBlacklist } = useSelector(({ settings }) => settings);
 
   const toggleItem = (list, name, id) => {
     if (list.includes(id)) {
@@ -25,7 +25,7 @@ const Blacklist = () => {
   };
 
   const resetItems = () => {
-    dispatch(setList([], 'bootsBlacklist'));
+    dispatch(setList([], 'bootBlacklist'));
     dispatch(setList([], 'itemBlacklist'));
   };
 
@@ -34,10 +34,10 @@ const Blacklist = () => {
       <div className='mx-auto mb-2'>
         <button className='btn' onClick={resetItems}>Reset</button>
         <div
-          className={'inline-block ml-3' + (bootsBlacklist.length === bootList.length ? ' text-red-500' : '')}
+          className={'inline-block ml-3' + (bootBlacklist.length === bootList.length ? ' text-red-500' : '')}
           title='All boots cannot be blacklisted.'
         >
-          Boots: {bootsBlacklist.length}
+          Boots: {bootBlacklist.length}
         </div>
         <div
           className={'inline-block ml-3' + (itemBlacklist.length > itemList.length - 5 ? ' text-red-500' : '')}
@@ -50,8 +50,8 @@ const Blacklist = () => {
         {bootList.map(boots => {
           return <img
             key={'item-' + boots.id}
-            style={{ filter: bootsBlacklist.includes(boots.id) ? 'grayscale(100%)' : 'grayscale(0%)' }}
-            onClick={() => toggleItem(bootsBlacklist, 'bootsBlacklist', boots.id)}
+            style={{ filter: bootBlacklist.includes(boots.id) ? 'grayscale(100%)' : 'grayscale(0%)' }}
+            onClick={() => toggleItem(bootBlacklist, 'bootBlacklist', boots.id)}
             className='cursor-pointer'
             src={icons[boots.icon.replace(/_icon\.png$/, '')]}
           />;

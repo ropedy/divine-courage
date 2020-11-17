@@ -13,7 +13,7 @@ import icons from '../../img/icons/*.png';
 
 const Whitelist = () => {
   const dispatch = useDispatch();
-  const { bootsWhitelist, itemWhitelist, heroWhitelist } = useSelector(({ settings }) => settings);
+  const { bootWhitelist, itemWhitelist, heroWhitelist } = useSelector(({ settings }) => settings);
 
   const toggleItem = (list, name, id) => {
     if (list.includes(id)) {
@@ -25,7 +25,7 @@ const Whitelist = () => {
   };
 
   const resetItems = () => {
-    dispatch(setList([], 'bootsWhitelist'));
+    dispatch(setList([], 'bootWhitelist'));
     dispatch(setList([], 'itemWhitelist'));
   };
 
@@ -34,10 +34,10 @@ const Whitelist = () => {
       <div className='mx-auto mb-2'>
         <button className='btn' onClick={resetItems}>Reset</button>
         <div
-          className={'inline-block ml-3' + (bootsWhitelist.length === 0 ? ' text-red-500' : '')}
+          className={'inline-block ml-3' + (bootWhitelist.length === 0 ? ' text-red-500' : '')}
           title='At least one pair of boots must be whitelisted.'
         >
-          Items: {bootsWhitelist.length}
+          Items: {bootWhitelist.length}
         </div>
         <div
           className={'inline-block ml-3' + (itemWhitelist.length < 5 ? ' text-red-500' : '')}
@@ -50,8 +50,8 @@ const Whitelist = () => {
         {bootList.map(boots => {
           return <img
             key={'item-' + boots.id}
-            style={{ filter: bootsWhitelist.includes(boots.id) ? 'grayscale(0%)' : 'grayscale(100%)' }}
-            onClick={() => toggleItem(bootsWhitelist, 'bootsWhitelist', boots.id)}
+            style={{ filter: bootWhitelist.includes(boots.id) ? 'grayscale(0%)' : 'grayscale(100%)' }}
+            onClick={() => toggleItem(bootWhitelist, 'bootWhitelist', boots.id)}
             className='cursor-pointer'
             src={icons[boots.icon.replace(/_icon\.png$/, '')]}
           />;

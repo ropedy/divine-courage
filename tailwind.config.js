@@ -37,6 +37,9 @@ module.exports = {
       },
       height: {
         'content': 'fit-content'
+      },
+      margin: {
+        '-2px': '-2px'
       }
     },
   },
